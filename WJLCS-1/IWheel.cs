@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace WJLCS {
 	/// <summary>
 	/// A wheel used by the <see cref="IEnigmaMachine"/> to encipher characters.

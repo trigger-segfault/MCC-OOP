@@ -1,14 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace WJLCS {
 	/// <summary>
 	/// The central wheel collection that operates the in-use wheels.
 	/// </summary>
 	public interface ICentralWheelCollection {
+
+		#region Properties
+
+		/// <summary>
+		/// Gets the central wheels used by the machine.
+		/// </summary>
+		ReadOnlyCollection<ICentralWheel> Wheels { get; }
+
+		#endregion
 
 		#region Enciphering
 
