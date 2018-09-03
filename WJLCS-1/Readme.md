@@ -40,5 +40,4 @@ The output result of the `EnigmaSetupBuilder.Build()` method. This is passed to 
 
 This interface defines the Enigma Machine that contains all other objects. Once `Setup(...)` is called once, the object can use the `Encipher(...)` and `Peek(...)` methods. These methoeds function the same as in the `ICentralWheelCollection`, except that the input is passed through the contained `ISteckerboard` object first. The `Encipher(string)` overload in `IEnigmaMachine` is used to encipher or decipher an entire message. After the function call, the machine will reset its state. `Reset()` can also be called to manually reset the state if the `Encipher(char)` method overload was used. The `AvailableWheels` property, as mentioned in `class EnigmaSetupBuilder`, is the collection of all defined `IWheel` types, each `IWheel` should contain a unique label to identify it. Other properties can be used to gauge the state of the machine, the output text, etc.
 
-### Video Presentation
-
+### Video Presentation: [Link](https://www.youtube.com/watch?v=V2a_owD0RCM)
