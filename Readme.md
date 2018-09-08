@@ -1,3 +1,3 @@
 # MCC-WJLCS
 
-Test Manchest Community College repo, please ignore
+Test Manchester Community College repo, please ignore
