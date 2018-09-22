@@ -1,0 +1,8 @@
+{
+  "status": "World War II",
+  "status-debug": "working on Upgrades",
+  "prefix": "!",
+  "tokens": {
+    "discord": "App Bot User Token"
+  }
+}
