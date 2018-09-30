@@ -1,0 +1,13 @@
+﻿
+Welcome to the Enigma Machine Program
+
+Select an option:
+
+1. Encryption Screen
+2. Decryption Screen
+3. Plugboard        
+4. Display Letterset
+5. HTML Screen      
+6. Rotor Screen     
+7. Credits          
+8. Exit             

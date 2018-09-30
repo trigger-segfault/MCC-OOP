@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WJLCS-1", "WJLCS-1\WJLCS-1.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discord", "Discord", "{1C98AEF7-C5C8-4218-85B0-E5345FB33633}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnigmaBot", "Discord\EnigmaBot\EnigmaBot.csproj", "{C97433D7-4224-4744-B358-5D45CCF1EF19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnigmaBot", "Discord\EnigmaBot\EnigmaBot.csproj", "{C97433D7-4224-4744-B358-5D45CCF1EF19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnigmaMachine", "Discord\EnigmaMachine\EnigmaMachine.csproj", "{8FDFE4D2-BB3E-43DE-A4F7-A47FEE2377A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnigmaMachine", "Discord\EnigmaMachine\EnigmaMachine.csproj", "{8FDFE4D2-BB3E-43DE-A4F7-A47FEE2377A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnigmaTest", "Discord\EnigmaTest\EnigmaTest.csproj", "{ADD30A22-5962-498B-8C8C-F996893384E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnigmaTest", "Discord\EnigmaTest\EnigmaTest.csproj", "{ADD30A22-5962-498B-8C8C-F996893384E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnigmaBot.Executable", "Discord\EnigmaBot.Executable\EnigmaBot.Executable.csproj", "{A1CF70D5-D3E6-4EA4-9109-D3BD7BD74BA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WJLCS-5", "WJLCS-5\WJLCS-5.csproj", "{53DB1081-3E09-4760-865A-0A8A4F929912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{A1CF70D5-D3E6-4EA4-9109-D3BD7BD74BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1CF70D5-D3E6-4EA4-9109-D3BD7BD74BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1CF70D5-D3E6-4EA4-9109-D3BD7BD74BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53DB1081-3E09-4760-865A-0A8A4F929912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53DB1081-3E09-4760-865A-0A8A4F929912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53DB1081-3E09-4760-865A-0A8A4F929912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53DB1081-3E09-4760-865A-0A8A4F929912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

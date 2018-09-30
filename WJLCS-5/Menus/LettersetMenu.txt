@@ -1,0 +1,8 @@
+﻿
+Available Letters
+
+Below are all of the available letters that can be enciphered by the enigma machine:
+
+[!LETTERSET!]
+
+Press Enter to go back.
