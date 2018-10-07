@@ -20,10 +20,9 @@ namespace EnigmaBot.Services {
 			Client.MessageReceived += OnMessageReceivedAsync;
 		}
 
-		private async Task OnMessageReceivedAsync(SocketMessage s) {
-			var msg = s as SocketUserMessage;     // Ensure the message is from a user/bot
-			if (msg == null)
-				return;
+		private async Task OnMessageReceivedAsync(SocketMessage s) { 
+			if (!(s is SocketUserMessage msg))
+				return;     // Ensure the message is from a user/bot
 			if (s.Author.IsBot)
 				return;     // Ignore bots and self when checking commands
 
@@ -36,47 +35,10 @@ namespace EnigmaBot.Services {
 			if (hasPrefix || hasMention) {
 				var result = await Commands.ExecuteAsync(context, argPos, Services);     // Execute the command
 
-				/*TestLockables();
-
-				if (result is BotPreconditionResult precon) {
-					await BotModuleBase.HandleResult(context, precon.Result);
+				if (!result.IsSuccess) {
+					if (result.Error.HasValue && result.Error == CommandError.UnknownCommand)
+						await msg.AddReactionAsync(new Emoji("❓"));
 				}
-
-				CommandError? commandError = result.Error ?? context.Error;
-				CustomCommandError? customError = context.CustomError;
-				string errorReason = result.ErrorReason ?? context.ErrorReason;
-
-				if (!result.IsSuccess || !context.IsSuccess) {    // If not successful, reply with the error.
-																  // Don't react to unknown commands when mentioning
-					if (hasMention && result.Error.HasValue &&
-						result.Error == CommandError.UnknownCommand)
-						return;
-
-					bool errorStated = false;
-					ReactionInfo reaction = null;
-					if (commandError.HasValue)
-						reaction = BotReactions.GetReaction(commandError.Value.ToString());
-					else if (reaction == null && customError.HasValue)
-						reaction = BotReactions.GetReaction(customError.Value.ToString());
-					if (reaction != null) {
-						await msg.AddReactionAsync(reaction.Emoji);
-						errorStated = true;
-					}
-					if (!errorStated) {
-						if (context.Exception != null) {
-							await msg.AddReactionAsync(BotReactions.Exception);
-							Console.WriteLine(context.Exception.ToString());
-						}
-						else if (result is ExecuteResult exResult) {
-							Console.WriteLine(context.Exception.ToString());
-						}
-						//if (!result.IsSuccess)
-						//	await context.Channel.SendMessageAsync(result.ToString());
-						//else if (context.ErrorReason != null)
-						//	await context.Channel.SendMessageAsync(context.ErrorReason);
-					}
-				}*/
-
 			}
 		}
 	}

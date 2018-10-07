@@ -1,0 +1,8 @@
+﻿
+Welcome to the Encryption Screen
+
+Please make a selection:
+       
+1. Enter a Message to Decipher    
+2. Paste a Message to Decipher    
+3. Exit back to the Welcome Screen

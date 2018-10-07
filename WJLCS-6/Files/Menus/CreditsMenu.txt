@@ -1,0 +1,23 @@
+﻿                        .-```````````-.                            
+                       /  / __   __ \  \            Ed Cauthorn    
+                      /    (_o)_(_o)    \           <------        
+                      |                 |                          
+                   .--|       /_\       |--.                       
+                 ,'    \      ___      /    `.                     
+                /       `.     _     ,'       \                    
+             .-"""""-.    `--.___.--'     .-"""""-.                
+.-----------/         \------------------/         \--------------.
+| .---------\         /----------------- \         /------------. |
+| |          `-`--`--'                    `--'--'-'             | |
+| |                          Credits                            | |
+| |                                                             | |
+| |             Patrick Adams       Designed this menu          | |
+| |             Matthew Brady       Designed menus              | |
+| |             Ehsun Farooq        Designed the plugboard      | |
+| |             Robert Jordan       Designed the letter set     | |
+| |             Ryan Lackey         Designed HTML output        | |
+| |             Dave Lawton         Designed rotor class        | |
+| |             Josh Perez          Designed file handling      | |
+| |             Erwin Pfau Melih    Designed menus              | |
+| |_____________________________________________________________| |
+|_________________________________________________________________|

@@ -1,0 +1,10 @@
+﻿
+Encryption Directions
+
+1. Only characters defined in the letter set are allowed  
+(Unavailable characters will NOT be enciphered!)          
+
+2. Enciphering works on individual characters and will NOT
+change future output afte the current character.          
+
+Press Enter to exit back to the Welcome Screen.

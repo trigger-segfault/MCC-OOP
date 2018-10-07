@@ -15,7 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnigmaTest", "Discord\Enigm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnigmaBot.Executable", "Discord\EnigmaBot.Executable\EnigmaBot.Executable.csproj", "{A1CF70D5-D3E6-4EA4-9109-D3BD7BD74BA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WJLCS-5", "WJLCS-5\WJLCS-5.csproj", "{53DB1081-3E09-4760-865A-0A8A4F929912}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WJLCS-5", "WJLCS-5\WJLCS-5.csproj", "{53DB1081-3E09-4760-865A-0A8A4F929912}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WJLCS-6", "WJLCS-6\WJLCS-6.csproj", "{61CEB7E0-1F82-4749-AE2B-8E91254EDA9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WJLCS-6.EnigmaMachine", "WJLCS-6.EnigmaMachine\WJLCS-6.EnigmaMachine.csproj", "{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,14 @@ Global
 		{53DB1081-3E09-4760-865A-0A8A4F929912}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53DB1081-3E09-4760-865A-0A8A4F929912}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53DB1081-3E09-4760-865A-0A8A4F929912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61CEB7E0-1F82-4749-AE2B-8E91254EDA9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61CEB7E0-1F82-4749-AE2B-8E91254EDA9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61CEB7E0-1F82-4749-AE2B-8E91254EDA9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61CEB7E0-1F82-4749-AE2B-8E91254EDA9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
