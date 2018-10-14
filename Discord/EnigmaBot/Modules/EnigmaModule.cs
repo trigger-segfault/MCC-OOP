@@ -11,10 +11,7 @@ namespace EnigmaBot.Modules {
 	[Name("Enigma Machine")]
 	public class EnigmaModule : BotModuleBase {
 		
-		/*[Command("post", RunMode = RunMode.Async)]
-		[Alias("p")]
-		[Summary("Post a decipherable message")]*/
-		[Command("encipher", RunMode = RunMode.Async)]
+		[Command("encipher")]
 		[Alias("enc", "e")]
 		[Parameters("<message...>")]
 		[Example("Hello World!")]
@@ -23,19 +20,14 @@ namespace EnigmaBot.Modules {
 			var msg = await ReplyAsync(null, false, Enigma.Post(text, Context.User));
 			await msg.AddReactionAsync(BotReactions.ViewMessage);
 		}
-
-		/*[Command("encipher", RunMode = RunMode.Async)]
-		[Alias("enc", "e")]
-		[Summary("Encipher text")]
-		public async Task Encipher([Remainder] string text) {
-			await ReplyAsync(Enigma.Encipher(text));
+		
+		[Command("sanitize")]
+		[Alias("san", "s")]
+		[Parameters("<text...>")]
+		[Example("Sanitize **Hello**")]
+		[Summary("Sanitizes the text so that it appears without formatting in Discord.")]
+		public Task Sanitize([Remainder] string text) {
+			return ReplyAsync(Format.Sanitize(text));
 		}
-
-		[Command("decipher", RunMode = RunMode.Async)]
-		[Alias("dec", "d")]
-		[Summary("Decipher text")]
-		public async Task Decipher([Remainder] string text) {
-			await ReplyAsync(Enigma.Decipher(text));
-		}*/
 	}
 }

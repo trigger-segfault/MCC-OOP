@@ -19,7 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WJLCS-5", "WJLCS-5\WJLCS-5.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WJLCS-6", "WJLCS-6\WJLCS-6.csproj", "{61CEB7E0-1F82-4749-AE2B-8E91254EDA9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WJLCS-6.EnigmaMachine", "WJLCS-6.EnigmaMachine\WJLCS-6.EnigmaMachine.csproj", "{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WJLCS-6.EnigmaMachine", "WJLCS-6.EnigmaMachine\WJLCS-6.EnigmaMachine.csproj", "{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WJLCS-7", "WJLCS-7\WJLCS-7.csproj", "{02DA14CC-EC96-4AE5-9EF4-D4E08D55E920}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WJLCS-7.EnigmaMachine", "WJLCS-7.EnigmaMachine\WJLCS-7.EnigmaMachine.csproj", "{EF2F7B2A-3D30-4B49-8E06-36F7B64AED73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,14 @@ Global
 		{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81C61BB0-F6FB-4261-AFDC-F1271352EFD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02DA14CC-EC96-4AE5-9EF4-D4E08D55E920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02DA14CC-EC96-4AE5-9EF4-D4E08D55E920}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02DA14CC-EC96-4AE5-9EF4-D4E08D55E920}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02DA14CC-EC96-4AE5-9EF4-D4E08D55E920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF2F7B2A-3D30-4B49-8E06-36F7B64AED73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF2F7B2A-3D30-4B49-8E06-36F7B64AED73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF2F7B2A-3D30-4B49-8E06-36F7B64AED73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF2F7B2A-3D30-4B49-8E06-36F7B64AED73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
