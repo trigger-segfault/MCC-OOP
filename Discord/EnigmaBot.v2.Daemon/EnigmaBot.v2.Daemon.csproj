@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net471;net462;netcoreapp2.1</TargetFrameworks>
+    <RootNamespace>EnigmaBot.Daemon</RootNamespace>
+    <ApplicationIcon>Resources\EnigmaBot.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiscordBots\TriggersTools.DiscordBots.Daemon\TriggersTools.DiscordBots.Daemon.csproj" />
+    <ProjectReference Include="..\EnigmaBot.v2\EnigmaBot.v2.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,4 @@
+﻿
+Welcome to the Plugboard Screen
+
+Press Enter to exit back to the Welcome Screen.

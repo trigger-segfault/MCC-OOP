@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net471;net462;netcoreapp2.1</TargetFrameworks>
+    <RootNamespace>EnigmaBot</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>EnigmaBot.v2</AssemblyName>
+    <ApplicationIcon>Resources\EnigmaBot.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net471|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\WJLCS-9.Enigma.IO\WJLCS-9.Enigma.IO.csproj" />
+    <ProjectReference Include="..\..\WJLCS-9.Enigma\WJLCS-9.Enigma.csproj" />
+    <ProjectReference Include="..\DiscordBots\TriggersTools.DiscordBots.Commands\TriggersTools.DiscordBots.Commands.csproj" />
+    <ProjectReference Include="..\DiscordBots\TriggersTools.DiscordBots.Core\TriggersTools.DiscordBots.Core.csproj" />
+    <ProjectReference Include="..\DiscordBots\TriggersTools.DiscordBots.Database\TriggersTools.DiscordBots.Database.csproj" />
+    <ProjectReference Include="..\DiscordBots\TriggersTools.DiscordBots.Implementation\TriggersTools.DiscordBots.Implementation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="TriggersTools.Build.BuildTime" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Config.Private.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Config.Public.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\HtmlTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Letterset.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Letterset.S.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Plugboard.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Plugboard.S.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\RotorKeys.S.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\RotorKeys.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

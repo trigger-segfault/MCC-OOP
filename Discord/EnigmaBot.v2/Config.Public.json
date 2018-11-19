@@ -1,0 +1,93 @@
+﻿{
+  // Customization
+  "prefix": "!", // Release
+  "nickname": "Enigma Bot", // Release
+  "embed_color": "#997346",
+  "embed_prefix": ":gear:  ",
+  "verion_postfix": null,
+
+  "about_desc": "A bot for testing and comparing Enigma Machine builds and confirming that they work together.",
+  /*
+  "about_title": "$NICKNAME$ on Space Patrol",
+  "help_title": "$NICKNAME$: Commands",
+  "reactions_title": "$NICKNAME$: Reactions",
+  "locked_title": "$NICKNAME$: Locked Commands",
+  "lockable_title": "$NICKNAME$: Lockable Commands",
+  "about_desc": "I was made by trigger_death for use in a small selection of Discord servers. My selling features are spoilers, inserting claps between words, drawing Divergence Meters, and other fun or helpful commands.\n\nPlease be nice to me. (ﾉ´ヮ`)ﾉ*: ･ﾟ",
+  "help_desc": "Type `help <commandName>` and I'll show you how a command is used. Make sure to not include the `[]` and `<>` braces. These are just here to show what is and isn't optional.",
+  "reactions_desc": "I react with, and respond to the following reactions.",
+  "locked_desc": "These are the commands that I have locked, and thus cannot be used. Commands prefixed with `🔒` are locked directly",
+  "lockable_desc": "These are the commands that I will allow you to lock. Commands prefixed with `🔓` can be locked directly,",
+  
+  "about_links": [
+    {
+      "name": "GitHub Repo",
+      "url": "https://github.com/trigger-death/TriggerChan"
+    },
+    {
+      "name": "Avatar by zwimmy",
+      "url": "https://www.deviantart.com/zwimmy/art/Trigger-chan-711192608"
+    },
+    {
+      "name": "Who am I?",
+      "url": "https://www.youtube.com/watch?v=qQp-KYnKzGA"
+    }
+  ],*/
+
+  // DefaultLoggingService: Configuration
+  "log": {
+    "debug": true,
+    "trace": true,
+    "print": true,
+    "notice": true
+  },
+  // Configuration types
+  "config": {
+    // These configurations must use the class name of the
+    // Config type and the property names for the settings
+    "DiscordSocketConfig": {
+      "DefaultRetryMode": "AlwaysRetry",
+      "LogLevel": "Info",
+      "MessageCacheSize": 1000,
+      "AlwaysDownloadUsers": false,
+      "LargeThreshold": null
+    },
+    "CommandServiceConfig": {
+      "DefaultRunMode": "Async",
+      "SeparatorChar": " ",
+      "CaseSensitiveCommands": false,
+      "LogLevel": "Verbose",
+      "ThrowOnError": null,
+      "IgnoreExtraArgs": false
+    },
+    "ReliabilityConfig": {
+      "Enabled": true,
+      "Timeout": "0:00:30",
+      "AttemptReset": false,
+      "DebugSeverity": "Debug",
+      "InfoSeverity": "Info",
+      "CriticalSeverity": "Critical"
+    }
+  },
+  // StatusRotationService: List all status rotations
+  "status": {
+    // The time span range a status will stay active for before rotating
+    "interval_min": "1:30",
+    "interval_max": "5:00",
+
+    // Activities: Playing, Watching, Listening, Streaming
+    // Activity Tokens: $PLAYING$, $WATCHING$, $LISTENING$, $STREAMING$
+
+    // Statuses used in release mode, (or when no debug statuses are present)
+    "release": [
+      // Watching
+      "$WATCHING$",
+      "World War II"
+    ] /*,
+    // Optional debug statuses
+    "debug": [
+      "$PLAYING$",
+      "find the Segfault"
+    ]*/
+  }
+}

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Enciphered Message</title>
+  <!-- Style for table borders -->
+  <style>
+    /* IMPORTANT: Style does not make use of any angle brackets to make parsing as XML easier */
+    table {
+      border-collapse: collapse;
+    }
+    table, tr {
+      border: 1px solid black;
+    }
+  </style>
+  <!-- Script for copying to clipboard -->
+  <script type="text/javascript">
+    // IMPORTANT: Script does not make use of any angle brackets to make parsing as XML easier
+    function copyToClipboard(text) {
+      console.log('Copied:');
+      console.log(text);
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'absolute';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+    function htmlUnescape(text) {
+        var div = document.createElement("div");
+        div.innerHTML = '.' + text + '.'; // Prevent trailing whitespace
+        text = div.textContent || div.innerText; // IE is different
+        return text.substr(1, text.length - 2);
+    }
+    function initialize() {
+      document.getElementById("button-copy").addEventListener('click', function() {
+        var tbody = document.querySelector('body table tbody');
+        var text = '';
+        // Avoid using less than here
+        for (var i = 0; i != tbody.children.length; i++) {
+          var td = tbody.children[i].firstElementChild;
+          text += htmlUnescape(td.innerHTML);
+        }
+        copyToClipboard(text);
+      });
+    }
+  </script>
+</head>
+<body>
+    <h2>Enciphered Message <button id="button-copy">Copy Text</button></h2>
+    <table>
+        <tbody></tbody>
+    </table>
+
+    <script>initialize();</script>
+</body>
+</html>

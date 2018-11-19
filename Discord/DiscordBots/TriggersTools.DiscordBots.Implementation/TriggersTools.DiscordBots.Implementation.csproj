@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+    <RootNamespace>TriggersTools.DiscordBots</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\IDiscordBotServiceContext.cs" />
+    <Compile Remove="MemoryUsageData.cs" />
+    <Compile Remove="Modules\DiscordBotBasicModule.cs" />
+    <Compile Remove="Services\ILockingService.cs" />
+    <Compile Remove="Services\IPrefixingService.cs" />
+    <Compile Remove="Services\StartupErrorService.cs" />
+    <Compile Remove="Unused\ILockingService.cs" />
+    <Compile Remove="Unused\IPrefixingService.cs" />
+    <Compile Remove="Unused\StartupErrorService.cs" />
+    <Compile Remove="Utils\ConfigUtils.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Commands\IDiscordBotServiceContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="MemoryUsageData.cs" />
+    <None Include="Modules\DiscordBotBasicModule.cs" />
+    <None Include="Unused\StartupErrorService.cs" />
+    <None Include="Unused\ILockingService.cs" />
+    <None Include="Unused\IPrefixingService.cs" />
+    <None Include="Utils\ConfigUtils.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Discord.Net.Providers.WS4Net" Version="2.0.0-beta2-01018" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0-preview3-35497" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.2.0-preview3-35497" />
+    <PackageReference Include="TriggersTools.Build.BuildTime" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TriggersTools.DiscordBots.Commands\TriggersTools.DiscordBots.Commands.csproj" />
+    <ProjectReference Include="..\TriggersTools.DiscordBots.Core\TriggersTools.DiscordBots.Core.csproj" />
+    <ProjectReference Include="..\TriggersTools.DiscordBots.Database\TriggersTools.DiscordBots.Database.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -14,9 +14,12 @@
 
 # Database files
 *.db
+*.sqlite
 
 # Config file with sensitive information
 [Cc]onfig.json
+[Cc]onfig.[Pp]rivate.json
+[Cc]onfig.[Pp]rotected.json
 
 # Build results
 [Dd]ebug/

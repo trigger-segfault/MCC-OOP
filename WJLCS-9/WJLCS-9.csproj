@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net462</TargetFramework>
+    <RootNamespace>WJLCS</RootNamespace>
+    <Configurations>Debug;Release;Publish</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Publish'">
+    <DefineConstants>TRACE;PUBLISH</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TextCopy" Version="1.5.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\WJLCS-9.Enigma.IO\WJLCS-9.Enigma.IO.csproj" />
+    <ProjectReference Include="..\WJLCS-9.Enigma\WJLCS-9.Enigma.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <RequiredFiles Include="Files\**\*.*" />
+    <RequiredFiles Remove="Files\Plugboard.Backup.txt" />
+  </ItemGroup>
+
+  <Target Name="CopyPublishFiles" DependsOnTargets="CopyPublishFile" BeforeTargets="BeforeBuild" Condition="'$(Configuration)'=='Publish'" />
+  <Target Name="CopyPublishFile" Outputs="%(RequiredFiles.Identity)">
+    <PropertyGroup>
+      <Filename>%(RequiredFiles.Filename)</Filename>
+      <InputPath>%(RequiredFiles.Identity)</InputPath>
+      <OutputPath>$(OutDir)$(InputPath.Replace('-Publish', ''))</OutputPath>
+      <PublishInputPath>%(RequiredFiles.RelativeDir)$(Filename)-Publish%(RequiredFiles.Extension)</PublishInputPath>
+    </PropertyGroup>
+
+    <Message Text="Copied: $(InputPath)" Importance="High" Condition="!$([System.IO.File]::Exists('$(MSBuildProjectDirectory)\$(PublishInputPath)'))" />
+    <Copy SourceFiles="$(InputPath)" DestinationFiles="$(OutputPath)" Condition="!$([System.IO.File]::Exists('$(MSBuildProjectDirectory)\$(PublishInputPath)'))" />
+  </Target>
+  
+  <Target Name="CopyNoPublishFiles" DependsOnTargets="CopyNoPublishFile" BeforeTargets="BeforeBuild" Condition="'$(Configuration)'!='Publish'" />
+  <Target Name="CopyNoPublishFile" Outputs="%(RequiredFiles.Identity)">
+    <PropertyGroup>
+      <Filename>%(RequiredFiles.Filename)</Filename>
+      <InputPath>%(RequiredFiles.Identity)</InputPath>
+      <OutputPath>$(OutDir)$(InputPath)</OutputPath>
+    </PropertyGroup>
+
+    <Message Text="Copied: $(InputPath)" Importance="High" Condition="!$(Filename.EndsWith('-Publish'))" />
+    <Copy SourceFiles="$(InputPath)" DestinationFiles="$(OutputPath)" Condition="!$(Filename.EndsWith('-Publish'))" />
+  </Target>
+</Project>

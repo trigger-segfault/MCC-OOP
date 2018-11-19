@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+    <RootNamespace>WJLCS.Enigma.IO</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WJLCS-9.Enigma\WJLCS-9.Enigma.csproj" />
+  </ItemGroup>
+
+</Project>

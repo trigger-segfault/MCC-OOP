@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Attributes\ConverterIgnoreAttribute.cs" />
+    <Compile Remove="Model\DbDM.cs" />
+    <Compile Remove="Model\DbGuild.cs" />
+    <Compile Remove="Model\DbGuildChannel.cs" />
+    <Compile Remove="Model\DbGuildEmote.cs" />
+    <Compile Remove="Model\DbGuildUser.cs" />
+    <Compile Remove="Model\DbRole.cs" />
+    <Compile Remove="Model\DbUser.cs" />
+    <Compile Remove="Model\InProgress\DbDiscordContext.cs" />
+    <Compile Remove="Model\InProgress\DbDM.cs" />
+    <Compile Remove="Model\InProgress\DbGuild.cs" />
+    <Compile Remove="Model\InProgress\DbGuildChannel.cs" />
+    <Compile Remove="Model\InProgress\DbGuildEmote.cs" />
+    <Compile Remove="Model\InProgress\DbGuildSnowflake.cs" />
+    <Compile Remove="Model\InProgress\DbGuildUser.cs" />
+    <Compile Remove="Model\InProgress\DbRole.cs" />
+    <Compile Remove="Model\InProgress\DbSnowflake.cs" />
+    <Compile Remove="Model\InProgress\DbUser.cs" />
+    <Compile Remove="Model\InProgress\Model.cs" />
+    <Compile Remove="Model\Special\BlobList.cs" />
+    <Compile Remove="Model\Special\CommandSet.cs" />
+    <Compile Remove="Model\Special\StringList - Copy.cs" />
+    <Compile Remove="Model\Special\StringStringSet.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4">
+      <!-- Fix "e_sqlite3.dll" not found -->
+      <IncludeAssets>all</IncludeAssets>
+      <PrivateAssets>none</PrivateAssets>
+      <ExcludeAssets>none</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Attributes\ConverterIgnoreAttribute.cs" />
+    <None Include="Model\InProgress\DbDM.cs" />
+    <None Include="Model\InProgress\DbGuild.cs" />
+    <None Include="Model\InProgress\DbGuildEmote.cs" />
+    <None Include="Model\InProgress\DbGuildUser.cs" />
+    <None Include="Model\InProgress\DbRole.cs" />
+    <None Include="Model\InProgress\DbUser.cs" />
+    <None Include="Model\InProgress\DbDiscordContext.cs" />
+    <None Include="Model\InProgress\DbGuildChannel.cs" />
+    <None Include="Model\InProgress\DbGuildSnowflake.cs" />
+    <None Include="Model\InProgress\DbSnowflake.cs" />
+    <None Include="Model\InProgress\Model.cs" />
+    <None Include="Model\Special\BlobList.cs" />
+    <None Include="Model\Special\CommandSet.cs" />
+    <None Include="Model\Special\StringList - Copy.cs" />
+    <None Include="Model\Special\StringStringSet.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TriggersTools.DiscordBots.Core\TriggersTools.DiscordBots.Core.csproj" />
+  </ItemGroup>
+
+</Project>

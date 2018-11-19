@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace EnigmaMachine {
-	public class Plugboard {
+	/// <summary>
+	/// The class that uses steckering to remap character indecies.
+	/// </summary>
+	internal class Plugboard {
 
 		#region Fields
 
