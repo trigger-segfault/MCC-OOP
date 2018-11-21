@@ -194,7 +194,7 @@ namespace EnigmaBot.Modules {
 									  $"**{members}** member{Plural(members)}");*/
 
 			embed.WithFooter($"{configParser.Nickname} {configParser.Version}, built on {configParser.BuildDate}");
-
+			embed.WithImageUrl(@"https://raw.githubusercontent.com/trigger-death/MCC-WJLCS/master/Discord/EnigmaBot.v2/Resources/UrlImages/EnigmaBotWide.png");
 		}
 
 		[Name("stats")]
