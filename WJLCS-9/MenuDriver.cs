@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using WJLCS.Menus;
 using WJLCS.Screens;
+using WJLCS.Screens.Actions;
 
 namespace WJLCS {
 	/// <summary>
@@ -30,16 +31,15 @@ namespace WJLCS {
 			MainMenu.Choices = new MenuAction[] {
 				EncryptionMenu,
 				DecryptionMenu,
-#if !PUBLISH
 				PlugboardMenu,
-#endif
 				LettersetMenu,
 				HTMLMenu,
-				RotorDirectionsMenu,
+				RotorMenu,
 				CreditsMenu,
 				MenuAction.Exit,
 			};
 			LettersetMenu.Choices = new MenuAction[] {
+				// Constant on Publish
 #if !PUBLISH
 				LetterSetConfigureScreen,
 #endif
@@ -49,9 +49,9 @@ namespace WJLCS {
 				MainMenu,
 			};
 			EncryptionMenu.Choices = new MenuAction[] {
-				EncryptionDirectionsMenu,
 				EncipherMessageScreen,
 				EncipherMessagePasteScreen,
+				EncryptionDirectionsMenu,
 				MainMenu,
 			};
 			EncryptionDirectionsMenu.Choices = new MenuAction[] {
@@ -64,17 +64,22 @@ namespace WJLCS {
 				MainMenu,
 			};
 			PlugboardMenu.Choices = new MenuAction[] {
+				// Constant on Publish
 #if !PUBLISH
 				PlugboardConfigureScreen,
 				PlugboardRandomizeScreen,
 #endif
 				MainMenu,
 			};
-			RotorDirectionsMenu.Choices = new MenuAction[] {
-#if !PUBLISH
+			RotorMenu.Choices = new MenuAction[] {
 				RotorConfigureScreen,
+				RotorConfigurePasteScreen,
+				CopyRotorKeys.Action,
 				RotorRandomizeScreen,
-#endif
+				RotorDirectionsMenu,
+				MainMenu,
+			};
+			RotorDirectionsMenu.Choices = new MenuAction[] {
 				MainMenu,
 			};
 			HTMLMenu.Choices = new MenuAction[] {
@@ -99,7 +104,7 @@ namespace WJLCS {
 		/// <summary>
 		/// The letterset menu screen.
 		/// </summary>
-		public Menu LettersetMenu { get; } = new LettersetMenu("Files/Menus/LettersetMenu.txt");
+		public Menu LettersetMenu { get; } = new LetterSetMenu("Files/Menus/LettersetMenu.txt");
 		/// <summary>
 		/// The encryption menu screen.
 		/// </summary>
@@ -111,11 +116,15 @@ namespace WJLCS {
 		/// <summary>
 		/// The plugboard menu screen.
 		/// </summary>
-		public Menu PlugboardMenu { get; } = new Menu("Files/Menus/PlugboardMenu.txt");
+		public Menu PlugboardMenu { get; } = new PlugboardMenu("Files/Menus/PlugboardMenu.txt");
 		/// <summary>
 		/// The encryption directions menu screen.
 		/// </summary>
 		public Menu EncryptionDirectionsMenu { get; } = new Menu("Files/Menus/EncryptionDirectionsMenu.txt");
+		/// <summary>
+		/// The rotor menu screen.
+		/// </summary>
+		public Menu RotorMenu { get; } = new RotorMenu("Files/Menus/RotorMenu.txt");
 		/// <summary>
 		/// The rotor directions menu screen.
 		/// </summary>
@@ -144,23 +153,23 @@ namespace WJLCS {
 		/// <summary>
 		/// The encipher message screen.
 		/// </summary>
-		public Screen EncipherMessageScreen { get; } = new EncipherMessageScreen("Files/Screens/EncipherMessageScreen.txt", EncipherMode.Input);
+		public Screen EncipherMessageScreen { get; } = new EncipherMessageScreen("Files/Screens/EncipherMessageScreen.txt", EnterMode.Input);
 		/// <summary>
 		/// The encipher message screen.
 		/// </summary>
-		public Screen EncipherMessagePasteScreen { get; } = new EncipherMessageScreen("Files/Screens/EncipherMessageScreen.txt", EncipherMode.Paste);
+		public Screen EncipherMessagePasteScreen { get; } = new EncipherMessageScreen("Files/Screens/EncipherMessageScreen.txt", EnterMode.Paste);
 		/// <summary>
 		/// The decipher message screen.
 		/// </summary>
-		public Screen DecipherMessageScreen { get; } = new DecipherMessageScreen("Files/Screens/DecipherMessageScreen.txt", EncipherMode.Input);
+		public Screen DecipherMessageScreen { get; } = new DecipherMessageScreen("Files/Screens/DecipherMessageScreen.txt", EnterMode.Input);
 		/// <summary>
 		/// The decipher message screen.
 		/// </summary>
-		public Screen DecipherMessagePasteScreen { get; } = new DecipherMessageScreen("Files/Screens/DecipherMessageScreen.txt", EncipherMode.Paste);
+		public Screen DecipherMessagePasteScreen { get; } = new DecipherMessageScreen("Files/Screens/DecipherMessageScreen.txt", EnterMode.Paste);
 		/// <summary>
 		/// The decipher message screen.
 		/// </summary>
-		public Screen DecipherMessageHtmlScreen { get; } = new DecipherMessageScreen("Files/Screens/DecipherMessageScreen.txt", EncipherMode.HTML);
+		public Screen DecipherMessageHtmlScreen { get; } = new DecipherMessageScreen("Files/Screens/DecipherMessageScreen.txt", EnterMode.File);
 		/// <summary>
 		/// The letterset configuration screen.
 		/// </summary>
@@ -176,7 +185,11 @@ namespace WJLCS {
 		/// <summary>
 		/// The rotor configure screen.
 		/// </summary>
-		public Screen RotorConfigureScreen { get; } = new RotorConfigureScreen("Files/Screens/RotorConfigureScreen.txt");
+		public Screen RotorConfigureScreen { get; } = new RotorConfigureScreen("Files/Screens/RotorConfigureScreen.txt", EnterMode.Input);
+		/// <summary>
+		/// The rotor configure screen.
+		/// </summary>
+		public Screen RotorConfigurePasteScreen { get; } = new RotorConfigureScreen("Files/Screens/RotorConfigureScreen.txt", EnterMode.Paste);
 		/// <summary>
 		/// The rotor randomize screen.
 		/// </summary>

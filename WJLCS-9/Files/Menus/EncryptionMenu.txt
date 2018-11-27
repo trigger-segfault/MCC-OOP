@@ -3,7 +3,7 @@ Welcome to the Encryption Screen
 
 Please make a selection:
 
-1. Encryption Directions          
-2. Enter a Message to Encipher    
-3. Paste a Message to Encipher    
-6. Exit back to the Welcome Screen
+1. Enter a Message to Encipher    
+2. Paste a Message to Encipher    
+3. Encryption Directions          
+4. Exit back to the Welcome Screen

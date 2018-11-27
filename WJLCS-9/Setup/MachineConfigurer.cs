@@ -68,6 +68,7 @@ namespace WJLCS.Setup {
 					RotorKeysLoaded	= rotorConfig.RotorKeys != null,
 					RotorKeysHash	= rotorConfig.RotorKeys?.GetHashCode() ?? 0,
 					RotorCount		= rotorConfig.RotorKeys?.Count ?? 0,
+					RotorKeys		= rotorConfig.RotorKeys.ToArray(),
 				};
 			}
 		}

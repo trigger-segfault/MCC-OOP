@@ -22,11 +22,11 @@ namespace WJLCS.Screens {
 		/// Runs the screen.
 		/// </summary>
 		/// <returns>The action to perform after a screen choice.</returns>
-		protected override sealed MenuAction RunScreen(MenuDriver screenDriver) {
-			RunScreen(screenDriver.Interpreter);
+		protected override sealed MenuAction RunScreen(MenuDriver menuDriver) {
+			RunScreen(menuDriver.Interpreter);
 			Console.Write("Press Enter: ");
 			Console.ReadLine();
-			return screenDriver.MainMenu;
+			return menuDriver.MainMenu;
 		}
 
 		#endregion

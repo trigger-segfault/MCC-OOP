@@ -12,7 +12,7 @@ namespace WJLCS.Menus {
 		/// <summary>
 		/// This text in the menu file will be replaced with the missing files.
 		/// </summary>
-		private const string MissingFilesMarker = "[!MISSING_FILES!]";
+		private const string MissingFilesToken = "MISSINGFILES";
 
 		#endregion
 
@@ -21,7 +21,9 @@ namespace WJLCS.Menus {
 		/// <summary>
 		/// Constructs the <see cref="MissingFilesMenu"/>.
 		/// </summary>
-		public MissingFilesMenu(string filePath) : base(filePath) { }
+		public MissingFilesMenu(string filePath) : base(filePath) {
+			AddToken(MissingFilesToken, PrintMissingFiles);
+		}
 
 		#endregion
 
@@ -39,38 +41,31 @@ namespace WJLCS.Menus {
 		/// <summary>
 		/// Prints the missing files menu to the screen.
 		/// </summary>
-		protected override void PrintScreen(MenuDriver screenDriver) {
-			Console.Clear();
+		protected override void PrintScreen(MenuDriver menuDriver) {
 
 			Console.ForegroundColor = ConsoleColor.Red;
 			if (!File.Exists(FilePath)) {
+				Console.Clear();
 				// Missing MissingFilesMenu text file, print a hardcoded menu instead
 				Console.WriteLine();
 				PrintLine("Missing Files!");
 				Console.WriteLine();
 				PrintLine("The following files required for runtime are missing, including the file to display this error menu!");
 				Console.WriteLine();
-				PrintMissingFiles();
+				PrintMissingFiles(menuDriver);
 				Console.WriteLine();
 			}
 			else {
-				// Read the text for the menu
-				string[] lines = ReadScreenFile(FilePath);
-				foreach (string line in lines) {
-					// Insert the letterset into the menu
-					if (line.Trim() == MissingFilesMarker)
-						PrintMissingFiles();
-					else
-						PrintLine(line);
-				}
+				base.PrintScreen(menuDriver);
 			}
 			Console.ResetColor();
+			Console.WriteLine();
 		}
 
 		/// <summary>
 		/// Prints the missing file list.
 		/// </summary>
-		private void PrintMissingFiles() {
+		private void PrintMissingFiles(MenuDriver menuDriver) {
 			foreach (string file in MissingFiles)
 				PrintLine(file);
 		}

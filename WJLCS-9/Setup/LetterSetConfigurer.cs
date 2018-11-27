@@ -1,10 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using WJLCS.Enigma;
 using WJLCS.Enigma.IO;
-using WJLCS.Utils;
-using static WJLCS.Setup.LetterParser;
 
 namespace WJLCS.Setup {
 	/// <summary>

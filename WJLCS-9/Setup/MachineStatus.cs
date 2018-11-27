@@ -1,4 +1,5 @@
 ﻿using System;
+using WJLCS.Screens;
 
 namespace WJLCS {
 	/// <summary>
@@ -56,6 +57,10 @@ namespace WJLCS {
 		/// The rotor count.
 		/// </summary>
 		public int RotorCount { get; set; }
+		/// <summary>
+		/// The array of rotor keys being used.
+		/// </summary>
+		public int[] RotorKeys { get; set; }
 
 		#endregion
 
@@ -79,7 +84,7 @@ namespace WJLCS {
 		/// </summary>
 		public void PrintStatus() {
 			PrintHeader("CONFIGURATION STATUS:");
-			PrintStatus("Enigma Machine", IsSetup,
+			PrintStatus(" Enigma Machine", IsSetup,
 				"<Setup Complete>",
 				"<Not Setup>");
 			if (!LetterSetLoaded)
@@ -96,10 +101,14 @@ namespace WJLCS {
 					"<Not Setup>");
 			if (!RotorKeysLoaded)
 				PrintError("Rotor Keys File", $"{RotorKeysFile} (Failed to load!)");
-			else
+			else {
 				PrintStatus("Rotor Keys File", RotorKeysFile != null,
 					$"{RotorKeysFile} (Hash: {RotorKeysHash:X8}, Rotors: {RotorCount})",
 					"<Not Setup>");
+				if (RotorKeysFile != null) {
+					PrintRotorKeys("     Rotor Keys");
+				}
+			}
 		}
 
 		#endregion
@@ -129,6 +138,20 @@ namespace WJLCS {
 			Console.Write(label + ": ");
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine(value);
+			Console.ResetColor();
+		}
+		private void PrintRotorKeys(string label) {
+			string keysStr = string.Join(" ", RotorKeys);
+			const int maxLength = Screen.ScreenWidth - 20;
+			if (keysStr.Length > maxLength) {
+				// Cut off the extra characters by identifying the last space.
+				int lastSpace = keysStr.LastIndexOf(' ', maxLength);
+				keysStr = keysStr.Substring(0, lastSpace) + "..."; // Add ellipses
+			}
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.Write(label + ": ");
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine(keysStr);
 			Console.ResetColor();
 		}
 		private void PrintError(string label, string value) {

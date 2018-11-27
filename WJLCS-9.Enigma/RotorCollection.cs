@@ -14,6 +14,10 @@ namespace WJLCS.Enigma {
 		/// The array of rotors in the collection.
 		/// </summary>
 		private readonly Rotor[] rotors;
+		/// <summary>
+		/// True if rotors should be rotated at all.
+		/// </summary>
+		private readonly bool rotateRotors;
 
 		#endregion
 
@@ -26,7 +30,7 @@ namespace WJLCS.Enigma {
 		/// <param name="rotorKeys">
 		/// The list of prime number keys describing the offset and number of rotors.
 		/// </param>
-		public RotorCollection(LetterSet letterSet, RotorKeys rotorKeys) {
+		public RotorCollection(LetterSet letterSet, RotorKeys rotorKeys, bool rotateRotors) {
 			if (letterSet == null)
 				throw new ArgumentNullException(nameof(letterSet));
 			if (rotorKeys == null)
@@ -35,6 +39,7 @@ namespace WJLCS.Enigma {
 			for (int i = 0; i < rotorKeys.Count; i++) {
 				rotors[i] = new Rotor(letterSet, rotorKeys[i]);
 			}
+			this.rotateRotors = rotateRotors;
 		}
 
 		#endregion
@@ -51,7 +56,7 @@ namespace WJLCS.Enigma {
 			for (int i = 0; i < rotors.Length; i++) {
 				inputIndex = rotors[i].Encipher(inputIndex);
 			}
-			if (!peek)
+			if (!peek && rotateRotors)
 				Rotate();
 			return inputIndex;
 		}
@@ -65,7 +70,7 @@ namespace WJLCS.Enigma {
 			for (int i = rotors.Length - 1; i >= 0; i--) {
 				inputIndex = rotors[i].Decipher(inputIndex);
 			}
-			if (!peek)
+			if (!peek && rotateRotors)
 				Rotate();
 			return inputIndex;
 		}

@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.0.0-beta2-01018" />
+    <PackageReference Include="Discord.Net" Version="2.0.0-beta2-01024" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
   <!--</ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net462'">-->

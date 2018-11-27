@@ -3,6 +3,6 @@ Missing Files!
 
 The following files required for runtime are missing:
 
-[!MISSING_FILES!]
+[!MISSINGFILES!]
 
 Press Enter to exit.

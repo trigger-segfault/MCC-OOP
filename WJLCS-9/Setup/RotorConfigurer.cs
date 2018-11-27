@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using WJLCS.Enigma;
 using WJLCS.Enigma.IO;
 
@@ -43,31 +44,29 @@ namespace WJLCS.Setup {
 		/// Runs the rotor count configurer.
 		/// </summary>
 		/// 
-		/// <exception cref="FileNotFoundException">
+		/// <exception cref="Exception">
 		/// The input file was not found.
 		/// </exception>
 		/// <exception cref="LoadFailedException">
 		/// An error occurred while loading the rotor keys.
 		/// </exception>
-		public void ConfigureRotorKeys(string input) {
-			string file = input;
-			try {
-				if (!System.IO.File.Exists(file))
-					throw new FileNotFoundException($"Input file \"{file}\" does not exist!");
-			} catch (Exception ex) {
-				throw new FileNotFoundException($"Input file \"{file}\" does not exist!\n" + ex.Message, ex);
-			}
+		public void ConfigureRotorKeys(string input, bool asIndecies) {
+			string[] keyStrings = input.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+			int[] keys;
 			RotorKeys oldRotorKeys = RotorKeys;
+			if (keyStrings.Length <= 0)
+				throw new Exception("Must enter at least one rotor key!");
 			try {
-				LoadFromFile(file);
-				try {
-					SaveToFile(RotorKeys, File);
-				} catch (Exception ex) {
-					RotorKeys = oldRotorKeys;
-					throw new SaveFailedException(ex);
-				}
+				keys = keyStrings.Select(s => int.Parse(s)).ToArray();
 			} catch (Exception ex) {
-				throw new LoadFailedException(ex);
+				throw new Exception("Failed to parse rotor keys!", ex);
+			}
+			RotorKeys = new RotorKeys(keys, asIndecies);
+			try {
+				SaveToFile(RotorKeys, File);
+			} catch (Exception ex) {
+				RotorKeys = oldRotorKeys;
+				throw new SaveFailedException(ex);
 			}
 		}
 		/// <summary>

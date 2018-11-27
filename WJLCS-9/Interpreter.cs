@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using WJLCS.Enigma;
 using WJLCS.Enigma.IO;
 using WJLCS.Setup;
@@ -83,6 +84,43 @@ namespace WJLCS {
 
 		#endregion
 
+		#region Setup
+
+		/// <summary>
+		/// Returns the letterset as an array so objects without connections to the Enigma machine can read
+		/// it.
+		/// </summary>
+		/// <returns>The letterset array.</returns>
+		public char[] GetLetterSet() {
+			return letterSetConfig.LetterSet?.ToArray();
+		}
+		/// <summary>
+		/// Returns the human-readable letterset as an array so objects without connections to the Enigma
+		/// machine can read it.
+		/// </summary>
+		/// <returns>The letterset array.</returns>
+		public string[] GetEscapedLetterSet() {
+			return letterSetConfig.LetterSet?.Select(c => LetterSetIO.EscapeLetter(c))?.ToArray();
+		}
+		/// <summary>
+		/// Returns the steckering as an array so objects without connections to the Enigma machine can read
+		/// it.
+		/// </summary>
+		/// <returns>The steckering array.</returns>
+		public int[] GetSteckering() {
+			return plugboardConfig.Steckering?.ToArray();
+		}
+		/// <summary>
+		/// Returns the rotor keys as an array so objects without connections to the Enigma machine can read
+		/// it.
+		/// </summary>
+		/// <returns>The rotor keys array.</returns>
+		public int[] GetRotorKeys() {
+			return rotorConfig.RotorKeys?.ToArray();
+		}
+
+		#endregion
+
 		#region Status
 
 		/// <summary>
@@ -100,7 +138,7 @@ namespace WJLCS {
 		/// Runs the Enigma Machine encipherer.
 		/// </summary>
 		/// <returns>The enciphered string.</returns>
-		public void RunEncipherer(EncipherMode mode) {
+		public void RunEncipherer(EnterMode mode) {
 			try {
 				if (!machineConfig.IsSetup) {
 					PrintError("The Enigma Machine has not been fully configured!");
@@ -110,10 +148,10 @@ namespace WJLCS {
 				Console.Write("Deciphered: ");
 				string line = string.Empty;
 				switch (mode) {
-				case EncipherMode.Input:
+				case EnterMode.Input:
 					line = Console.ReadLine();
 					break;
-				case EncipherMode.Paste:
+				case EnterMode.Paste:
 					line = TextCopy.Clipboard.GetText();
 					if (string.IsNullOrEmpty(line)) {
 						PrintError("Clipboard has no text!");
@@ -139,9 +177,10 @@ namespace WJLCS {
 				Console.WriteLine();
 
 				Console.ForegroundColor = ConsoleColor.DarkYellow;
-				Console.WriteLine($"Default: \"{DefaultHtmlFile}\"");
+				//Console.WriteLine($"Default: \"{DefaultHtmlFile}\"");
 				Console.Write("Enter the output Enciphered HTML file path: ");
-				string path = Console.ReadLine();
+				PrintWatermark(DefaultHtmlFile);
+				string path = PrepareHtmlPath(Console.ReadLine());
 				try {
 					HtmlIO.Write(enciphered, path, HtmlTemplateFile);
 				} catch (Exception ex) {
@@ -160,7 +199,7 @@ namespace WJLCS {
 		/// Runs the Enigma Machine decipherer.
 		/// </summary>
 		/// <returns>The decipherer string.</returns>
-		public void RunDecipherer(EncipherMode mode) {
+		public void RunDecipherer(EnterMode mode) {
 			try {
 				if (!machineConfig.IsSetup) {
 					PrintError("The Enigma Machine has not been fully configured!");
@@ -168,13 +207,13 @@ namespace WJLCS {
 				}
 				string line = string.Empty;
 				switch (mode) {
-				case EncipherMode.Input:
+				case EnterMode.Input:
 					Console.ForegroundColor = ConsoleColor.Yellow;
 					Console.Write("Enciphered: ");
 					line = Console.ReadLine();
 					break;
 
-				case EncipherMode.Paste:
+				case EnterMode.Paste:
 					Console.ForegroundColor = ConsoleColor.Yellow;
 					Console.Write("Enciphered: ");
 					line = TextCopy.Clipboard.GetText();
@@ -185,12 +224,13 @@ namespace WJLCS {
 					Console.WriteLine(line);
 					break;
 
-				case EncipherMode.HTML:
+				case EnterMode.File:
 					Console.ForegroundColor = ConsoleColor.DarkYellow;
-					Console.WriteLine($"Default: \"{DefaultHtmlFile}\"");
+					//Console.WriteLine($"Default: \"{DefaultHtmlFile}\"");
 					Console.Write("Enter the input Enciphered HTML file path: ");
+					PrintWatermark(DefaultHtmlFile);
 					Console.WriteLine();
-					string path = Console.ReadLine();
+					string path = PrepareHtmlPath(Console.ReadLine());
 					try {
 						line = HtmlIO.Read(path);
 					} catch (Exception ex) {
@@ -293,24 +333,54 @@ namespace WJLCS {
 		/// <summary>
 		/// Runs the rotor configurer.
 		/// </summary>
-		public void ConfigureRotors() {
-			Console.Write("Enter rotor keys configuration file: ");
-			string file = Console.ReadLine();
+		public void ConfigureRotors(EnterMode mode) {
+
+			Console.Write("Enter rotors as indecies (y/n): ");
+			string input = Console.ReadLine().ToLower();
+			bool asIndecies = false;
+			if (input == "yes" || input == "y") {
+				asIndecies = true;
+			}
+			else if (input != "no" && input != "n") {
+				PrintError("Invalid input. Must be y/yes/n/no!");
+				return;
+			}
+			Console.WriteLine();
+			Console.ForegroundColor = ConsoleColor.Blue;
+			if (!asIndecies)
+				Console.Write("Enter prime rotor keys: ");
+			else
+				Console.Write($"Enter rotor key indecies between 0 and {RotorKeys.TotalKeyCount - 1}: ");
+			input = string.Empty;
+			switch (mode) {
+			case EnterMode.Input:
+				input = Console.ReadLine();
+				break;
+
+			case EnterMode.Paste:
+				input = TextCopy.Clipboard.GetText();
+				if (string.IsNullOrEmpty(input)) {
+					PrintError("Clipboard has no text!");
+					return;
+				}
+				Console.WriteLine(input);
+				break;
+			}
 			try {
-				rotorConfig.ConfigureRotorKeys(file);
-				machineConfig.SetupMachineIfReady();
+				rotorConfig.ConfigureRotorKeys(input, asIndecies);
+			} catch (Exception ex) {
+				PrintError(ex.Message);
+				return;
+			}
+			Console.WriteLine();
+			Console.ForegroundColor = ConsoleColor.Blue;
+			try {
+				Console.WriteLine($"New Rotor Keys: {string.Join(" ", rotorConfig.RotorKeys)}");
 			} catch (Exception ex) {
 				PrintError(ex.Message);
 			}
-			/*Console.Write("Enter rotor count greater than zero: ");
-			string count = Console.ReadLine();
-			try {
-				rotorConfig.ConfigureRotorKeys(count);
-				machineConfig.SetupMachineIfReady();
-			}
-			catch (Exception ex) {
-				PrintError(ex.Message);
-			}*/
+			Console.ResetColor();
+			Console.WriteLine();
 		}
 		/// <summary>
 		/// Runs the rotor randomizer.
@@ -326,6 +396,7 @@ namespace WJLCS {
 					rotorConfig.RandomizeRotorKeys(count);
 				} catch (Exception ex) {
 					PrintError(ex.Message);
+					return;
 				}
 			}
 			else {
@@ -333,6 +404,15 @@ namespace WJLCS {
 					PrintError("Invalid input. Must be y/yes/n/no!");
 				return;
 			}
+			Console.WriteLine();
+			Console.ForegroundColor = ConsoleColor.Blue;
+			try {
+				Console.WriteLine($"New Rotor Keys: {string.Join(" ", rotorConfig.RotorKeys)}");
+			} catch (Exception ex) {
+				PrintError(ex.Message);
+			}
+			Console.ResetColor();
+			Console.WriteLine();
 		}
 
 		#endregion
@@ -368,7 +448,7 @@ namespace WJLCS {
 		/// </summary>
 		/// <param name="path">The input path</param>
 		/// <returns>The corrected output path.</returns>
-		private static string PrepareHtmlPath(string path) {
+		private string PrepareHtmlPath(string path) {
 			path = (!string.IsNullOrWhiteSpace(path) ? path : DefaultHtmlFile);
 			if (!Path.HasExtension(path))
 				path = Path.ChangeExtension(path, ".html");
@@ -393,8 +473,21 @@ namespace WJLCS {
 			Console.WriteLine(warning);
 			Console.ResetColor();
 		}
+		/// <summary>
+		/// Prints a watermark in dark gray and backtracks to before it was entered.
+		/// </summary>
+		/// <param name="watermark">The text to print.</param>
+		private void PrintWatermark(string watermark) {
+			ConsoleColor lastColor = Console.ForegroundColor;
+			Console.ForegroundColor = ConsoleColor.DarkGray;
+			int left = Console.CursorLeft;
+			int top = Console.CursorTop;
+			Console.Write(watermark);
+			Console.CursorLeft = left;
+			Console.CursorTop = top;
+			Console.ForegroundColor = lastColor;
+		}
 
 		#endregion
-
 	}
 }

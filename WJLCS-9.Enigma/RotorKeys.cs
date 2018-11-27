@@ -115,7 +115,7 @@ namespace WJLCS.Enigma {
 					if (key > 1000)
 						throw new ArgumentOutOfRangeException(nameof(keys), $"Rotor key {key} is greater than 1000!");
 					else if (!primeFinder.IsPrime(keys[i]))
-						throw new ArgumentException($"Rotor key {keys[i]} is not prime!", nameof(keys));
+						throw new NotPrimeException($"Rotor key {keys[i]} is not prime!");
 				}
 				Array.Copy(keys, this.keys, keys.Length);
 			}

@@ -45,14 +45,6 @@ namespace WJLCS.Screens {
 		/// </param>
 		protected Screen(string filePath/*, bool publishVersion*/) {
 			FilePath = filePath ?? throw new ArgumentNullException(nameof(filePath));
-#if PUBLISH
-			/*if (publishVersion) {
-				// Append "-Publish" to the end of the file name
-				string name = Path.GetFileNameWithoutExtension(filePath);
-				string ext = Path.GetExtension(filePath);
-				FilePath = $"{name}-Publish{ext}";
-			}*/
-#endif
 		}
 
 		#endregion
@@ -65,8 +57,7 @@ namespace WJLCS.Screens {
 		/// <param name="filePath">The text file to read lines from.</param>
 		/// <returns>The lines of the text file.</returns>
 		protected string[] ReadScreenFile(string filePath) {
-			string text = File.ReadAllText(FilePath);
-			return text.SplitLines();
+			return File.ReadAllLines(filePath);
 		}
 		/// <summary>
 		/// Prints the centered line that conforms to screen width standards.
@@ -87,6 +78,20 @@ namespace WJLCS.Screens {
 			Console.WriteLine(error);
 			Console.ResetColor();
 		}
+		/// <summary>
+		/// Prints a watermark in dark gray and backtracks to before it was entered.
+		/// </summary>
+		/// <param name="watermark">The text to print.</param>
+		protected void PrintWatermark(string watermark) {
+			ConsoleColor lastColor = Console.ForegroundColor;
+			Console.ForegroundColor = ConsoleColor.DarkGray;
+			int left = Console.CursorLeft;
+			int top = Console.CursorTop;
+			Console.Write(watermark);
+			Console.CursorLeft = left;
+			Console.CursorTop = top;
+			Console.ForegroundColor = lastColor;
+		}
 
 		#endregion
 
@@ -96,20 +101,22 @@ namespace WJLCS.Screens {
 		/// Publishes and runs the screen.
 		/// </summary>
 		/// <returns>The action to perform after a screen choice.</returns>
-		public virtual MenuAction Publish(MenuDriver screenDriver) {
-			PrintScreen(screenDriver);
-			return RunScreen(screenDriver);
+		public virtual MenuAction Publish(MenuDriver menuDriver) {
+			PrintScreen(menuDriver);
+			return RunScreen(menuDriver);
 		}
 		/// <summary>
 		/// Prints the menu to the screen.
 		/// </summary>
-		protected virtual void PrintScreen(MenuDriver screenDriver) {
+		protected virtual void PrintScreen(MenuDriver menuDriver) {
 			Console.Clear();
 
 			// Read the text for the menu
 			string[] lines = ReadScreenFile(FilePath);
 			foreach (string line in lines)
 				PrintLine(line);
+
+			Console.WriteLine();
 		}
 		/// <summary>
 		/// Checks for any missing files required by this screen
@@ -130,7 +137,7 @@ namespace WJLCS.Screens {
 		/// Runs the screen.
 		/// </summary>
 		/// <returns>The action to perform after a screen choice.</returns>
-		protected abstract MenuAction RunScreen(MenuDriver screenDriver);
+		protected abstract MenuAction RunScreen(MenuDriver menuDriver);
 
 		#endregion
 	}

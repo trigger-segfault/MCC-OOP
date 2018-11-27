@@ -28,10 +28,11 @@ namespace WJLCS.Enigma {
 		public Machine(SetupArgs args) {
 			args.Validate();
 			plugboard = new Plugboard(args.LetterSet, args.Steckering);
-			rotors = new RotorCollection(args.LetterSet, args.RotorKeys);
+			rotors = new RotorCollection(args.LetterSet, args.RotorKeys, args.RotateRotors);
 
 			LetterSet = args.LetterSet;
 			Steckering = args.Steckering;
+			RotateRotors = args.RotateRotors;
 			UnmappedHandling = args.UnmappedHandling;
 			InvalidCharacter = args.InvalidCharacter;
 			RotateOnInvalid = args.RotateOnInvalid;
@@ -49,6 +50,10 @@ namespace WJLCS.Enigma {
 		/// Gets the steckering used in the Enigma Machine.
 		/// </summary>
 		public Steckering Steckering { get; }
+		/// <summary>
+		/// Gets if rotors should be rotated at all.
+		/// </summary>
+		public bool RotateRotors { get; }
 		/// <summary>
 		/// Gets how unmapped characters are treated when enciphering and deciphering.
 		/// </summary>
@@ -147,7 +152,7 @@ namespace WJLCS.Enigma {
 		private char HandleInvalid(char c, bool peek) {
 			if (UnmappedHandling == UnmappedHandling.Remove)
 				return '\0';
-			if (!peek && RotateOnInvalid)
+			if (!peek && RotateOnInvalid && RotateRotors)
 				rotors.Rotate();
 			if (UnmappedHandling == UnmappedHandling.MakeInvalid)
 				return InvalidCharacter;

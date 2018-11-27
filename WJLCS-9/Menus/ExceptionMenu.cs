@@ -13,7 +13,7 @@ namespace WJLCS.Menus {
 		/// <summary>
 		/// This text in the menu file will be replaced with the exception.
 		/// </summary>
-		private const string ExceptionMarker = "[!EXCEPTION!]";
+		private const string ExceptionToken = "EXCEPTION";
 
 		#endregion
 
@@ -22,7 +22,9 @@ namespace WJLCS.Menus {
 		/// <summary>
 		/// Constructs the <see cref="ExceptionMenu"/>.
 		/// </summary>
-		public ExceptionMenu(string filePath) : base(filePath) { }
+		public ExceptionMenu(string filePath) : base(filePath) {
+			AddToken(ExceptionToken, PrintException);
+		}
 
 		#endregion
 
@@ -40,40 +42,32 @@ namespace WJLCS.Menus {
 		/// <summary>
 		/// Prints the missing files menu to the screen.
 		/// </summary>
-		protected override void PrintScreen(MenuDriver screenDriver) {
-			Console.Clear();
-
+		protected override void PrintScreen(MenuDriver menuDriver) {
 			Console.ForegroundColor = ConsoleColor.Red;
 			if (!File.Exists(FilePath)) {
+				Console.Clear();
 				// Missing MissingFilesMenu text file, print a hardcoded menu instead
 				Console.WriteLine();
 				PrintLine("Unhandled Exception!");
 				Console.WriteLine();
 				PrintLine("The following error occurred while running the program:");
 				Console.WriteLine();
-				PrintException();
+				PrintException(menuDriver);
 				Console.WriteLine();
 			}
 			else {
-				// Read the text for the menu
-				string[] lines = ReadScreenFile(FilePath);
-				foreach (string line in lines) {
-					// Insert the letterset into the menu
-					if (line.Trim() == ExceptionMarker)
-						PrintException();
-					else
-						PrintLine(line);
-				}
+				base.PrintScreen(menuDriver);
 			}
 			Console.ResetColor();
+			Console.WriteLine();
 		}
 
 		/// <summary>
 		/// Prints the missing file list.
 		/// </summary>
-		private void PrintException() {
+		private void PrintException(MenuDriver menuDriver) {
 			Console.ForegroundColor = ConsoleColor.Yellow;
-			foreach (string line in Exception.ToStringWithInner().SplitLines())
+			foreach (string line in Exception.ToString().SplitLines())
 				PrintLine(line);
 			Console.ForegroundColor = ConsoleColor.Red;
 		}

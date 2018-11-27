@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
+using System.Text;
 
 namespace WJLCS.Menus {
 	/// <summary>
 	/// The menu class for displaying the letterset.
 	/// </summary>
-	public class LettersetMenu : Menu {
+	public class LetterSetMenu : Menu {
 
 		#region Constants
 		
@@ -15,95 +14,54 @@ namespace WJLCS.Menus {
 		/// </summary>
 		private const int LettersetMargin = 12;
 		/// <summary>
+		/// The width of each letter when printed.
+		/// </summary>
+		private const int LetterWidth = 3;
+		/// <summary>
 		/// This text in the menu file will be replaced with the letterset.
 		/// </summary>
-		private const string LettersetMarker = "[!LETTERSET!]";
-
-		#endregion
-
-		#region Properties
-
-		/*/// <summary>
-		/// Gets the filepath of the letterset.
-		/// </summary>
-		public string LettersetFilePath { get; }*/
+		private const string LettersetToken = "LETTERSET";
 
 		#endregion
 		
 		#region Constructors
 
 		/// <summary>
-		/// Constructs the <see cref="LettersetMenu"/>.
+		/// Constructs the <see cref="LetterSetMenu"/>.
 		/// </summary>
 		/// <param name="filePath">The filepath of the menu text.</param>
-		/// <param name="lettersetFilePath">The filepath of the letterset.</param>
-		public LettersetMenu(string filePath) : base(filePath) {
-			//LettersetFilePath = lettersetFilePath ??
-			//	throw new ArgumentNullException(nameof(lettersetFilePath));
+		public LetterSetMenu(string filePath) : base(filePath) {
+			AddToken(LettersetToken, PrintLetterset);
 		}
 
 		#endregion
 
-		#region PrintScreen Override
-
-		/// <summary>
-		/// Prints the letterset menu to the screen.
-		/// </summary>
-		protected override void PrintScreen(MenuDriver screenDriver) {
-			Console.Clear();
-
-			// Read the text for the menu
-			string[] lines = ReadScreenFile(FilePath);
-			foreach (string line in lines) {
-				// Insert the letterset into the menu
-				if (line.Trim() == LettersetMarker)
-					PrintLetterset(screenDriver);
-				else
-					PrintLine(line);
-			}
-		}
-
+		#region Print Command
+		
 		/// <summary>
 		/// Prints the letterset list.
 		/// </summary>
-		private void PrintLetterset(MenuDriver screenDriver) {
-			string letterText;
-			try {
-				letterText = File.ReadAllText(screenDriver.Interpreter.LetterSetFile);
-			}
-			catch (Exception ex) {
-				PrintError($"Failed to load letterset: {ex.Message}");
+		private void PrintLetterset(MenuDriver menuDriver) {
+			string[] letters = menuDriver.Interpreter.GetEscapedLetterSet();
+			if (letters == null) {
+				PrintError($"No letterset is loaded!");
 				return;
 			}
-			string[] letters = letterText.Replace("\r", "").Split('\n');
 
 			// +1 because the last letter does not need a space after it.
-			int lettersPerRow = (ScreenWidth - LettersetMargin + 1) / 3;
+			int lettersPerRow = (ScreenWidth - LettersetMargin + 1) / LetterWidth;
 
+			Console.ForegroundColor = ConsoleColor.DarkGreen;
 			int i = 0;
 			while (i < letters.Length) {
-				string currentLine = string.Empty;
+				StringBuilder str = new StringBuilder();
 				for (int j = 0; i < letters.Length && j < lettersPerRow; i++, j++) {
-					currentLine += letters[i].PadRight(3);
+					str.Append(letters[i].PadRight(LetterWidth));
 				}
-				PrintLine(currentLine.TrimEnd());
+				PrintLine(str.ToString().TrimEnd());
 			}
+			Console.ResetColor();
 		}
-
-		#endregion
-
-		#region GetMissingFiles
-
-		/*/// <summary>
-		/// Checks for any missing files required by this screen
-		/// </summary>
-		/// <returns>An array of missing files.</returns>
-		public override string[] GetMissingFiles() {
-			List<string> files = new List<string>(base.GetMissingFiles());
-			if (!File.Exists(LettersetFilePath))
-				files.Add(LettersetFilePath);
-			return files.ToArray();
-		}*/
 
 		#endregion
 	}

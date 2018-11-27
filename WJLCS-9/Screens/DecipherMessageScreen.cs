@@ -10,7 +10,7 @@ namespace WJLCS.Screens {
 		/// <summary>
 		/// How an enciphered message is received. Text, Paste, or HTML.
 		/// </summary>
-		private readonly EncipherMode mode;
+		private readonly EnterMode mode;
 
 		#endregion
 
@@ -20,8 +20,8 @@ namespace WJLCS.Screens {
 		/// Constructs the <see cref="DecipherMessageScreen"/>.
 		/// </summary>
 		/// <param name="filePath">The filepath of the screen text.</param>
-		/// <param name="paste">True if this decipher message should come from the clipboard.</param>
-		public DecipherMessageScreen(string fileName, EncipherMode mode) : base(fileName) {
+		/// <param name="mode">The mode for how the screen receives input.</param>
+		public DecipherMessageScreen(string fileName, EnterMode mode) : base(fileName) {
 			this.mode = mode;
 		}
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WJLCS.Enigma {
 	/// <summary>
@@ -59,6 +57,10 @@ namespace WJLCS.Enigma {
 		/// The prime numbers keys used for the rotors.
 		/// </summary>
 		public RotorKeys RotorKeys { get; set; }
+		/// <summary>
+		/// True if rotors should be rotated at all.
+		/// </summary>
+		public bool RotateRotors { get; set; } = false;
 
 		/// <summary>
 		/// How to handle unmapped characters.

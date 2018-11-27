@@ -42,10 +42,10 @@ namespace WJLCS {
 		/// <summary>
 		/// Invokes the screen action and passes the menu driver.
 		/// </summary>
-		/// <param name="screenDriver">The driver for the screens.</param>
+		/// <param name="menuDriver">The driver for the screens.</param>
 		/// <returns>The next screen to go to.</returns>
-		public Screen Invoke(MenuDriver screenDriver) {
-			return action(screenDriver);
+		public Screen Invoke(MenuDriver menuDriver) {
+			return action(menuDriver);
 		}
 
 		#endregion
