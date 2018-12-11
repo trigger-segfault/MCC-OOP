@@ -39,7 +39,7 @@ namespace WJLCS {
 		/// </summary>
 		/// <param name="line">The line to log.</param>
 		public static void LogLine(string line) {
-			LogRaw($"[{DateTime.UtcNow.ToString("hh:mm:ss")}] {line}{Environment.NewLine}");
+			LogRaw($"[{DateTime.UtcNow.ToString("HH:mm:ss")}] {line}{Environment.NewLine}");
 		}
 		/// <summary>
 		/// Logs the info text to the file.
