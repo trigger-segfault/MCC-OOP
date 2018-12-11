@@ -21,6 +21,10 @@
 [Cc]onfig.[Pp]rivate.json
 [Cc]onfig.[Pp]rotected.json
 
+# RTF Submissions
+.submission
+WJLCS.Packager.exe
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

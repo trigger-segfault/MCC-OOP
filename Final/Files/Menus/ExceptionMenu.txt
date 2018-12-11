@@ -1,0 +1,8 @@
+﻿
+Unhandled Exception!
+
+The following error occurred while running the program:
+
+[!EXCEPTION!]
+
+Press Enter to exit.

@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>net462;net471;netcoreapp2.1</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net462</TargetFramework>
     <RootNamespace>WJLCS</RootNamespace>
+    <AssemblyName>EnigmaMachine</AssemblyName>
     <Configurations>Debug;Release;Publish</Configurations>
   </PropertyGroup>
-
+  
   <PropertyGroup Condition="'$(Configuration)'=='Publish'">
     <DefineConstants>TRACE;PUBLISH</DefineConstants>
   </PropertyGroup>
@@ -14,10 +15,10 @@
   <ItemGroup>
     <PackageReference Include="TextCopy" Version="1.5.0" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\WJLCS-9.Enigma.IO\WJLCS-9.Enigma.IO.csproj" />
-    <ProjectReference Include="..\WJLCS-9.Enigma\WJLCS-9.Enigma.csproj" />
+    <ProjectReference Include="..\Final.Enigma.IO\Final.Enigma.IO.csproj" />
+    <ProjectReference Include="..\Final.Enigma\Final.Enigma.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,7 +37,7 @@
     <Message Text="Copied: $(InputPath)" Importance="High" Condition="!$([System.IO.File]::Exists('$(MSBuildProjectDirectory)\$(PublishInputPath)'))" />
     <Copy SourceFiles="$(InputPath)" DestinationFiles="$(OutputPath)" Condition="!$([System.IO.File]::Exists('$(MSBuildProjectDirectory)\$(PublishInputPath)'))" />
   </Target>
-  
+
   <Target Name="CopyNoPublishFiles" DependsOnTargets="CopyNoPublishFile" BeforeTargets="BeforeBuild" Condition="'$(Configuration)'!='Publish'" />
   <Target Name="CopyNoPublishFile" Outputs="%(RequiredFiles.Identity)">
     <PropertyGroup>

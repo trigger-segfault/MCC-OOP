@@ -1,0 +1,6 @@
+﻿
+HTML Screen
+
+Enciphered messages are saved to an HTML file of your choosing after enciphering the text. In the decipher screen, choose option 3. to input the path of an HTML file to decipher. Only HTML files created through the enigma machine will be of the supported format.
+
+Press Enter to exit back to the Welcome Screen.

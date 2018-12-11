@@ -1,0 +1,8 @@
+﻿
+Welcome to the Plugboard Screen
+
+Below is the current plugboard steckering:
+
+[!STECKERING!]
+
+Press Enter to exit back to the Welcome Screen.

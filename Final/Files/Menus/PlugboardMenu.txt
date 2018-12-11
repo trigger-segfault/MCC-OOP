@@ -1,0 +1,12 @@
+﻿
+Welcome to the Plugboard Screen
+
+Below is the current plugboard steckering:
+
+[!STECKERING!]
+
+Please make a selection:
+
+1. Load Plugboard File              
+2. Randomize Plugboard And Save File
+3. Exit back to the Welcome Screen  

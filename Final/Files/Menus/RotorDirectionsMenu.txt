@@ -1,0 +1,8 @@
+﻿
+Passing characters to be encrypted...
+
+Your letters are now being encrypted by the rotors. You have {ROTORNUM} rotors. Using your key value of {KEYVAL}, an offset value of {OFFSET} was calculated. Using those values, your input character is mapped to an encrypted character on the adjacent rotor. This process of mapping characters is repeated for each rotor in your {ROTORNUM} rotor series.
+
+Characters encrypted.
+
+Press Enter to exit back to the Welcome Screen.

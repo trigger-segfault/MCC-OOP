@@ -1,0 +1,9 @@
+﻿
+Welcome to the Encryption Screen
+
+Please make a selection:
+       
+1. Enter a Message to Decipher    
+2. Paste a Message to Decipher    
+3. Enter an HTML File to Decipher 
+4. Exit back to the Welcome Screen

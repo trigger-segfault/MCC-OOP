@@ -1,0 +1,15 @@
+﻿
+Rotor Screen
+
+Below are the current keys being used by the rotors in order:
+
+[!ROTORKEYS!]
+
+Please make a selection:
+
+1. Enter New Rotor Keys           
+2. Paste New Rotor Keys           
+3. Copy Current Rotor Keys        
+4. Randomize Rotor Keys           
+5. Rotor Directions               
+6. Exit back to the Welcome Screen

@@ -1,0 +1,9 @@
+﻿
+Welcome to the Encryption Screen
+
+Please make a selection:
+
+1. Enter a Message to Encipher    
+2. Paste a Message to Encipher    
+3. Encryption Directions          
+4. Exit back to the Welcome Screen
